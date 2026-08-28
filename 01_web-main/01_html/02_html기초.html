@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--브라우저 탭의 제목-->
+    <title>HTML 연습</title>
+</head>
+<body>
+    안녕하세요.<br />
+    저는
+    박
+    서
+    영
+    입니다.
+
+    <!-- 주석은 눈에 보이지 않습니다. -->
+    <!-- 들여쓰기 SHIFT+ TAB 누르시면 하나 앞으로 끌어오고,
+        TAB 누르시면 하나 밀려납니다.-->
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h5>제목5</h5>
+    <h6>제목6</h6>
+    <!-- 에러가 있어도 그냥 무시합니다. -->
+    <h7>제목7</h7>
+    그냥 글씨
+
+    <!-- 리스트 : 부모/ 자식 태그를 함께 사용
+     Unordered / Ordered  -->
+     <ul>
+        <li>사과</li>
+        <li>짜장면</li>
+        <li>마라탕</li>
+     </ul>
+
+     <ol>
+        <li>사과</li>
+        <li>한식</li>
+        <li>짜장면</li>
+        <li>마라탕</li>
+     </ol>
+
+    <!--표 -->
+    <table border = "3">
+        <!--행--(table row)-->
+        <tr> 
+            <td><!--table data(칸)-->
+                이름
+            </td>
+            <td>
+                나이
+            </td>
+        </tr>
+        <!--위에 행 만들기 -->
+        <tr>
+            <td>
+                신짱구
+            </td>
+            <td>
+                5
+            </td>
+        </tr>
+    </table>
+    <!--a (anchor) 태그를 사용해서 다른 문서와 연결을 해보기-->
+    <!-- 태그에 특정한 기능을 부여하기 위해 속성(attribute)을 함께 사용하기도 합니다. -->
+     <a href="00_emmet.html">00으로 넘어가기</a>
+<br><!-- 줄바꿈 ! -->
+       <!-- 네이버로 가기 라는 내용에 naver.com 을 연결해보세요.-->
+    <a href="https://www.naver.com" target="_blank">네이버로 가기</a>
+
+       <!--이미지는 어떻게 첨부할까요 / scr = source임 -->
+       <!-- .은 현재 디렉토리를 의미합니다. -->
+        <!-- 개발은 로컬에서 하지만 서버는 현재 프로젝트부터 올리기 때문에
+     경로는 상대경로로, 현재 파일 기준으로 해당 파일이 어디 있는지,
+     윈도우는 \, 웹은 / 으로 경로를 구분합니다.-->
+       <img src="https://item.kakaocdn.net/do/fae86d24809f7b9d33dd4b9ac8e3cdf3934a8bea49f711d785ad9144e9c20713">
+       <img src="./data/jjanggu.png">
+
+       <!--data/monster.png를 넣어주세요
+       이미지가 크니까 mdn에서 이미지 크기 줄이는 속성을 찾아서 적당히 줄여보세요.-->
+       <img src="./data/monster.png" width=50 height=50/>
+
+       <br>
+       <!-- p : paragraph 로 문단을 구분합니다.-->
+        <!--b : 화면에 진하게 보이기 , strong : 의미를 강조합니다., i : 이탤릭체 ,em : 강조-->
+       <!--lorem : 가짜 문단을 하나 만들어줌 .-->
+       <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor<strong> sit amet </strong> consectetur adipisicing elit. Quisquam, quod.</p>
+       <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+        <!-- 정보 전달을 잘해서 검색어 우선순위에 -->
+    </body>
+</html>
