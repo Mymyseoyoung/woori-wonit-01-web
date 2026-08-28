@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seoyoung | Backend Developer</title>
+<meta name="description" content="홍익대학교 컴퓨터공학과 서영의 백엔드 개발 포트폴리오">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Design Tokens (Material Design) ===== */
+  :root {
+    --color-primary: #3F51B5;
+    --color-primary-dark: #2C387E;
+    --color-primary-light: #C5CAE9;
+    --color-header-bg: #DDF2D3;
+    --color-accent: #00BCD4;
+    --color-bg: #FAFAFA;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #212121;
+    --color-text-secondary: #6b6b6b;
+    --color-divider: #E0E0E0;
+    --color-on-primary: #FFFFFF;
+
+    --elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+    --elevation-2: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.14);
+    --elevation-4: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.12);
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    --font-display: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+
+    --header-height: 64px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 16px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-display);
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--color-primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 12px 20px;
+    z-index: 1000;
+    border-radius: 0 0 var(--radius-sm) 0;
+  }
+  .skip-link:focus { left: 0; }
+
+  /* ===== Header / Nav ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background: var(--color-header-bg);
+    color: var(--color-text-primary);
+    box-shadow: var(--elevation-2);
+  }
+
+  .header-inner {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-primary-dark);
+  }
+  .brand:hover { text-decoration: none; opacity: 0.75; }
+
+  nav.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav.main-nav a {
+    display: inline-block;
+    padding: 10px 16px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  nav.main-nav a:hover {
+    background: rgba(44,56,126,0.08);
+    color: var(--color-primary-dark);
+    text-decoration: none;
+  }
+
+  nav.main-nav a[aria-current="page"] {
+    color: var(--color-primary-dark);
+    background: rgba(44,56,126,0.12);
+    box-shadow: inset 0 -3px 0 var(--color-primary-dark);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--color-primary-dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===== Layout ===== */
+  main { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  section { padding: 56px 0; border-bottom: 1px solid var(--color-divider); }
+  section:last-of-type { border-bottom: none; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+  }
+
+  h2.section-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    margin: 0 0 32px;
+    color: var(--color-text-primary);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .hero-banner {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-2);
+    display: block;
+  }
+
+  .hero-lead {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero-lead p {
+    flex: 1 1 480px;
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  /* ===== Tech Stack (Chips) ===== */
+  .stack-group { margin-bottom: 28px; }
+  .stack-group:last-child { margin-bottom: 0; }
+
+  .stack-group h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 14px;
+  }
+
+  ul.chip-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .chip-list img { display: block; height: 28px; border-radius: var(--radius-sm); }
+
+  /* ===== Profile timeline ===== */
+  ul.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 3px solid var(--color-primary-light);
+  }
+
+  .timeline li {
+    position: relative;
+    padding: 4px 0 4px 28px;
+    margin-bottom: 18px;
+  }
+  .timeline li:last-child { margin-bottom: 0; }
+
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 12px;
+    width: 15px;
+    height: 15px;
+    background: var(--color-surface);
+    border: 3px solid var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .timeline strong { display: block; font-size: 1rem; font-weight: 700; }
+  .timeline span { color: var(--color-text-secondary); font-size: 0.9rem; font-family: var(--font-mono); }
+
+  /* ===== Projects (Cards) ===== */
+  ul.project-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-1);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .project-card:hover, .project-card:focus-within {
+    box-shadow: var(--elevation-4);
+    transform: translateY(-3px);
+  }
+
+  .project-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .project-card h3 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+  .project-card h3 a { color: var(--color-text-primary); }
+  .project-card h3 a:hover { color: var(--color-primary); }
+
+  .badge {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    white-space: nowrap;
+  }
+
+  .badge.award { background: #FFF3CD; color: #7A5B00; }
+
+  .project-card p { margin: 0; color: var(--color-text-secondary); font-size: 0.92rem; flex-grow: 1; }
+
+  .project-card time {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+  }
+
+  .project-card details {
+    margin-top: 2px;
+    border-top: 1px solid var(--color-divider);
+    padding-top: 10px;
+  }
+
+  .project-card summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .project-card summary::-webkit-details-marker { display: none; }
+
+  .project-card summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .project-card details[open] summary::before { transform: rotate(90deg); }
+
+  .project-card details p.trouble {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    flex-grow: 0;
+  }
+
+  /* ===== Footer ===== */
+  footer.site-footer {
+    background: var(--color-primary-dark);
+    color: rgba(255,255,255,0.85);
+    padding: 32px 20px;
+    margin-top: 40px;
+  }
+
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-inner a { color: #fff; font-weight: 500; }
+
+  .footer-inner small { font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 720px) {
+    .nav-toggle { display: inline-flex; align-items:center; justify-content:center; }
+
+    nav.main-nav {
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background: var(--color-header-bg);
+      box-shadow: var(--elevation-2);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    nav.main-nav.open { max-height: 200px; }
+
+    nav.main-nav ul {
+      flex-direction: column;
+      padding: 8px 20px 16px;
+      gap: 4px;
+    }
+
+    nav.main-nav a { display: block; }
+
+    section { padding: 40px 0; }
+    h2.section-title { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">Seoyoung.dev</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="메뉴 열기">
+      ☰
+    </button>
+    <nav class="main-nav" id="mainNav" aria-label="주요 메뉴">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="keyword.html">Keywords</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <section class="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Seoyoung's GitHub</h1>
+    <img
+      class="hero-banner"
+      src="https://capsule-render.vercel.app/api?type=rounded&color=auto&height=200&text=Seoyoung%27s+Github+%E2%98%81%EF%B8%8F&fontSize=50&fontAlign=45&fontAlignY=45&desc=&descSize=20&descAlign=60&descAlignY=50"
+      alt="Seoyoung's GitHub 배너"
+      width="1200" height="200"
+    >
+    <div class="hero-lead">
+      <p>홍익대학교 컴퓨터공학과에 재학 중인 백엔드 개발자입니다. Java와 Spring Boot를 중심으로, AI API 연동과 실서비스 배포까지 경험을 넓혀가고 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="tech-stack" aria-labelledby="stack-heading">
+    <p class="section-eyebrow">Skills</p>
+    <h2 class="section-title" id="stack-heading">🛠️ Tech Stack</h2>
+
+    <div class="stack-group">
+      <h3>Backend</h3>
+      <ul class="chip-list">
+        <li><img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white" alt="Java"></li>
+        <li><img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Spring Boot"></li>
+        <li><img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white" alt="Spring Security"></li>
+        <li><img src="https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=flat-square&logo=spring&logoColor=white" alt="Spring Data JPA"></li>
+        <li><img src="https://img.shields.io/badge/Swagger-85EA2D?style=flat-square&logo=swagger&logoColor=black" alt="Swagger"></li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h3>AI / LLM</h3>
+      <ul class="chip-list">
+        <li><img src="https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white" alt="OpenAI"></li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h3>Database</h3>
+      <ul class="chip-list">
+        <li><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL"></li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h3>Infra &amp; DevOps</h3>
+      <ul class="chip-list">
+        <li><img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white" alt="AWS"></li>
+        <li><img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"></li>
+        <li><img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions"></li>
+        <li><img src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white" alt="Nginx"></li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h3>Tools</h3>
+      <ul class="chip-list">
+        <li><img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"></li>
+        <li><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub"></li>
+        <li><img src="https://img.shields.io/badge/Slack-4A154B?style=flat-square&logo=slack&logoColor=white" alt="Slack"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="profile" aria-labelledby="profile-heading">
+    <p class="section-eyebrow">Background</p>
+    <h2 class="section-title" id="profile-heading">📚 Profile</h2>
+    <ul class="timeline">
+      <li>
+        <strong>홍익대학교 컴퓨터공학과</strong>
+        <span>2023.03 ~ </span>
+      </li>
+      <li>
+        <strong>홍익대학교 멋쟁이사자처럼 - 13기 BE</strong>
+        <span>2025.03 ~ 2025.12</span>
+      </li>
+      <li>
+        <strong>홍익대학교 멋쟁이사자처럼 - 14기 BE 운영진</strong>
+        <span>2026.01 ~ </span>
+      </li>
+      <li>
+        <strong>대학생 IT 연합동아리 UMC 10기 SpringBoot</strong>
+        <span>2026.03 ~ 2026.08</span>
+      </li>
+      <li>
+        <strong>우리 WON 청년 IT 아카데미 1기</strong>
+        <span>2026.08 ~ </span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-heading">
+    <p class="section-eyebrow">Work</p>
+    <h2 class="section-title" id="projects-heading">💡 Projects</h2>
+
+    <ul class="project-grid">
+      <li>
+        <article class="project-card">
+        <div class="project-card-head">
+          <h3><a href="https://github.com/TeachING-Dev/Backend" target="_blank" rel="noopener noreferrer">TeachING</a></h3>
+          <span class="badge award">🏆 최우수상</span>
+        </div>
+        <span class="badge">BE Lead</span>
+        <p>AI 기반 개인화 학습 서비스</p>
+        <time datetime="2026-07/2026-08">2026.07 ~ 2026.08</time>
+        <details>
+          <summary>트러블슈팅</summary>
+          <p class="trouble">개발/운영 환경마다 쿠키의 Secure·SameSite·Domain 설정이 달라 토큰 재발급이 실패하던 문제를, 환경별 설정 분리와 발급 로직 일원화로 해결했습니다.</p>
+        </details>
+        </article>
+      </li>
+
+      <li>
+        <article class="project-card">
+        <div class="project-card-head">
+          <h3><a href="https://github.com/Bamti-DOSA/dosa-backend" target="_blank" rel="noopener noreferrer">SIMVEX</a></h3>
+        </div>
+        <span class="badge">BE</span>
+        <p>3D 기계 부품 시각화 및 AI 튜터 플랫폼</p>
+        <time datetime="2026-02">2026.02</time>
+        <details>
+          <summary>트러블슈팅</summary>
+          <p class="trouble">대화가 길어질수록 토큰 비용과 응답 지연이 커지는 문제를, 최근 메시지 30개 기준 요약 전략으로 해결했습니다.</p>
+        </details>
+        </article>
+      </li>
+
+      <li>
+        <article class="project-card">
+        <div class="project-card-head">
+          <h3><a href="https://github.com/likelion-14th-page/likelion-14th-BE" target="_blank" rel="noopener noreferrer">멋쟁이사자처럼 14기 모집 플랫폼</a></h3>
+        </div>
+        <span class="badge">BE</span>
+        <p>지원자 모집 및 결과 관리 서비스</p>
+        <time datetime="2026-01">2026.01</time>
+        <details>
+          <summary>트러블슈팅</summary>
+          <p class="trouble">대량 SMS 발송 중 외부 SDK 연동 실패가 발생해, 예외 처리와 로그 기반 디버깅 로직을 추가해 안정성을 확보했습니다.</p>
+        </details>
+        </article>
+      </li>
+
+      <li>
+        <article class="project-card">
+        <div class="project-card-head">
+          <h3><a href="https://github.com/MutsaDemoDay/BackEnd.git" target="_blank" rel="noopener noreferrer">Dango</a></h3>
+        </div>
+        <span class="badge">BE Lead</span>
+        <p>소상공인–고객 스탬프·쿠폰 리워드 플랫폼</p>
+        <time datetime="2025-09/2025-11">2025.09 ~ 2025.11</time>
+        <details>
+          <summary>트러블슈팅</summary>
+          <p class="trouble">스탬프·쿠폰 로직이 서비스 레이어에 뒤섞여 유지보수가 어려워질 뻔한 문제를, 도메인 모델로 응집시켜 해결했습니다.</p>
+        </details>
+        </article>
+      </li>
+
+      <li>
+        <article class="project-card">
+        <div class="project-card-head">
+          <h3><a href="https://github.com/hongik-devtalk/Devtalk-Server-Application" target="_blank" rel="noopener noreferrer">DevTalk</a></h3>
+        </div>
+        <span class="badge">BE</span>
+        <p>홍익대학교 IT 세미나 플랫폼</p>
+        <time datetime="2025-09/2025-11">2025.09 ~ 2025.11</time>
+        <details>
+          <summary>트러블슈팅</summary>
+          <p class="trouble">세미나 파일 다운로드 시 S3 CORS 오류로 파일 접근이 막히던 문제를, S3 버킷 CORS 정책 재설정으로 해결했습니다.</p>
+        </details>
+        </article>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <small>&copy; 2026 Seoyoung. Built with vanilla HTML/CSS/JS.</small>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+    });
+
+    // 모바일 메뉴에서 링크 클릭 시 자동으로 닫기
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A' && window.innerWidth <= 720) {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

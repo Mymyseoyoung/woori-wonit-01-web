@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나를 대표하는 키워드 | Seoyoung</title>
+<meta name="description" content="서영을 대표하는 3가지 키워드">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Design Tokens (index.html과 동일) ===== */
+  :root {
+    --color-primary: #3F51B5;
+    --color-primary-dark: #2C387E;
+    --color-primary-light: #C5CAE9;
+    --color-accent: #00BCD4;
+    --color-bg: #FAFAFA;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #212121;
+    --color-text-secondary: #6b6b6b;
+    --color-divider: #E0E0E0;
+    --color-on-primary: #FFFFFF;
+
+    --elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+    --elevation-2: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.14);
+    --elevation-4: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.12);
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    --font-display: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+
+    --header-height: 64px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 16px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-display);
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--color-primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 12px 20px;
+    z-index: 1000;
+    border-radius: 0 0 var(--radius-sm) 0;
+  }
+  .skip-link:focus { left: 0; }
+
+  /* ===== Header / Nav (index.html과 동일) ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    box-shadow: var(--elevation-2);
+  }
+
+  .header-inner {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+  }
+  .brand:hover { text-decoration: none; opacity: 0.9; }
+
+  nav.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav.main-nav a {
+    display: inline-block;
+    padding: 10px 16px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  nav.main-nav a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  nav.main-nav a[aria-current="page"] {
+    color: #fff;
+    background: rgba(255,255,255,0.18);
+    box-shadow: inset 0 -3px 0 var(--color-accent);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===== Layout ===== */
+  main { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  section { padding: 56px 0; }
+
+  .section-eyebrow {
+    display: block;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+  }
+
+  h1.section-title {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 900;
+    margin: 0 0 48px;
+    color: var(--color-text-primary);
+  }
+
+  /* ===== Keyword cards ===== */
+  ul.keyword-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .keyword-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-1);
+    padding: 32px 20px;
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .keyword-card:hover, .keyword-card:focus-within {
+    box-shadow: var(--elevation-4);
+    transform: translateY(-8px);
+  }
+
+  .keyword-card .emoji {
+    font-size: 40px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+
+  .keyword-card h2 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin: 0 0 10px;
+  }
+
+  .keyword-card p {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  /* ===== Footer (index.html과 동일) ===== */
+  footer.site-footer {
+    background: var(--color-primary-dark);
+    color: rgba(255,255,255,0.85);
+    padding: 32px 20px;
+    margin-top: 40px;
+  }
+
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-inner a { color: #fff; font-weight: 500; }
+
+  .footer-inner small { font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 720px) {
+    .nav-toggle { display: inline-flex; align-items:center; justify-content:center; }
+
+    nav.main-nav {
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background: var(--color-primary-dark);
+      box-shadow: var(--elevation-2);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    nav.main-nav.open { max-height: 200px; }
+
+    nav.main-nav ul {
+      flex-direction: column;
+      padding: 8px 20px 16px;
+      gap: 4px;
+    }
+
+    nav.main-nav a { display: block; }
+
+    section { padding: 40px 0; }
+    h1.section-title { font-size: 1.4rem; }
+
+    ul.keyword-grid { grid-template-columns: 1fr; max-width: 320px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">Seoyoung.dev</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="메뉴 열기">
+      ☰
+    </button>
+    <nav class="main-nav" id="mainNav" aria-label="주요 메뉴">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="keyword.html" aria-current="page">Keywords</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <section aria-labelledby="keyword-heading">
+    <p class="section-eyebrow">About Me</p>
+    <h1 class="section-title" id="keyword-heading">나를 대표하는 3가지 키워드</h1>
+
+    <ul class="keyword-grid">
+      <li class="keyword-card">
+        <div class="emoji" aria-hidden="true">🎬</div>
+        <h2>내가 즐겨보는 콘텐츠는?</h2>
+        <p>넷플릭스</p>
+      </li>
+
+      <li class="keyword-card">
+        <div class="emoji" aria-hidden="true">🧁</div>
+        <h2>나의 취미는?</h2>
+        <p>베이킹</p>
+      </li>
+
+      <li class="keyword-card">
+        <div class="emoji" aria-hidden="true">🎧</div>
+        <h2>외출할 때 꼭 챙기는 물품은?</h2>
+        <p>지갑 &amp; 에어팟</p>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <small>&copy; 2026 Seoyoung. Built with vanilla HTML/CSS/JS.</small>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('mainNav');
+
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+    });
+
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A' && window.innerWidth <= 720) {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
