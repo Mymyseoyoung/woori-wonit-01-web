@@ -1,0 +1,65 @@
+/* 태그 자체 */
+body {
+    margin: 0;
+    border-color: rgb(0, 0, 0);
+    border-style: dashed;
+}
+
+/* id */
+#header, #footer {
+    border-color: rgb(255, 77, 0);
+    border-style: dashed;
+}
+
+/* class */
+.line-need {
+    border-color: blue;
+    border-style: dashed;
+}
+
+
+/* position : 위치를 결정하는 속성
+Vv static (기본) - 요소 자체가 가지고 있는 위치를 통해 레이아웃
+v absolute (절대적인) - 자기를 감싼 상위 태그 기준으로 레이아웃
+Vv sticky (딱 붙어있는) - 자기 자리까지는 그대로 있다가 스크롤이 내려가면 고정
+Vv relative (상대적인) - 원래 내 위치 기준으로 레이아웃
+Vv fixed (고정된) - 처음부터 끝까지 붙박이 
+*/
+
+div, span {
+    margin: 20px;
+    padding: 200px;
+    border: blue dashed;
+}
+
+header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 20px;
+    padding: 20px;
+    background-color: bisque;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: blue;
+}
+
+#span1 {
+    /* 원래 자기 위치를 기준으로 */
+    position: relative;
+    top: -20px;
+}
+
+#div2 {
+    /* position: sticky; */
+    position: absolute; /* 자신의 부모인 article 기준으로 top 30px 만큼 위치에서 시작 */
+    background-color: brown;
+    top:30px;
+}
