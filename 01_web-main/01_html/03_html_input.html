@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- vs code 한줄 복사 : shift + alt + 방향키(아래키)-->
+    <!-- 이거를 받을 겁니다 : type 에 적기 ! -->
+     <!-- 문법상으로는 숫자도 따옴표! -->
+      <!-- autofocus 는 열자마자 커서가 깜빡거리게 해줌.-->
+    <input type="text",size="5" name=""text" autofocus>
+    <input type="password",size="5" name="password" required>>
+    <input type="date",size="255" name="date">
+    <input type="color">
+
+    <!-- 여러개 중 하나만 선택시킬때-->
+        <!-- name으로 묶어서 단위를 만들고, value 에는 실제로 백엔드/js에서 사용할 값을 씁니다.영어로, 띄어쓰기 없이 작성-->
+    <!--value 에는 실제로 백엔드/js에서 사용할 값을 씁니다.영어로, 띄어쓰기 없이 작성-->
+    <input type ="radio" name="gender" value="male">남자
+    <input type ="radio" name="gender" value="female">여자
+    <input type ="radio" name="gender" value="none">알리고 싶지 않음
+    <br/>
+    <!-- 여러개 중 여러개 선택시킬때-->
+     <input type ="checkbox" name="food" value="pizza">피자
+    <input type ="checkbox" name="food" value="hamburger">햄버거
+    <input type ="checkbox" name="food" value="pasta">파스타
+
+
+    <input type=""date" name="date" min="2020-01-01" max="2028-12-31">
+
+    <input type="month" id="month" name="month">
+    <input type="week" id="week" name="week">
+    <input type="time" id="time" name="time">
+
+    <input type ="number" name = "num" min="0" max="1000">
+    <input type ="range" name = "num" min="0" max="100">
+
+    <!-- 가운데에 -이 들어가면 문자임!-->
+     <input type="number" name="phone" >
+
+     <hr>
+     <!--form의 submit는 폼을 통째로 전달하는 역할-->
+     <!--form의 reset은 폼을 통쨰로 초기화하는 역할-->
+     <form>
+        <label for="name">이름:</label><br>
+        <input type="text" id="name" name="name" value ="Park"><br>
+        <label for="affiliation">소속:</label><br>
+        <input type="text" id="affiliation" name="affiliation" value ="SIAT"><br>
+        <input type="submit" value="전송"> <!--value를 지워보고 바꿔보기-->
+        <input type="reset" value="초기화">
+     </form>
+
+</body>
+</html>
