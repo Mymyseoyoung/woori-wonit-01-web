@@ -1,41 +1,248 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-     <meta charset="UTF-8">
+    <!-- 문서의 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+
+    <!-- 모바일 기기에서 화면 너비를 디바이스 너비로 맞추고 확대/축소 비율을 1로 유지 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 외부 CSS 파일 연결 -->
     <link rel="stylesheet" href="../01_html/02_html기초.css">
-    <!--브라우저 탭의 제목-->
+
+    <!-- 브라우저 탭의 제목 -->
     <title>계좌 페이지 연습</title>
 </head>
+
 <body>
-    <!-- 계좌 카드 하나 = 독립적인 콘텐츠 묶음이므로 article 사용 -->
-<article class="account-card">
+    <!--
+      계좌 카드들을 담는 부모 컨테이너
+      이 영역을 grid로 만들면 한 줄에 4개씩 카드 배치가 가능
+    -->
+    <div class="account-grid">
 
-  <!-- 카드의 제목 역할이므로 header로 묶음 -->
-  <header>
-    <!-- 은행명은 이 카드의 대표 제목이므로 h2 (페이지 전체 제목 h1은 따로 있다고 가정) -->
-    <h2>우리은행</h2>
-  </header>
+        <!--
+          계좌 카드 하나 = 독립적인 콘텐츠 묶음이므로 article 사용
+          각 카드가 하나의 계좌 정보를 담는 단위이기 때문에 article로 구성
+        -->
+        <article class="account-card">
+            <!-- 카드의 제목 역할이므로 header로 묶음 -->
+            <header>
+                <!-- 은행명은 이 카드의 대표 제목이므로 h2 사용 -->
+                <h2>우리은행</h2>
+            </header>
 
-  <!-- 계좌 정보(번호, 잔액)는 서로 연관된 설명 데이터이므로 dl(정의 목록)로 구조화 -->
-  <dl>
-    <!-- dt: 설명 대상(용어), dd: 그 값 -->
-    <dt>계좌번호</dt>
-    <!-- 마스킹된 숫자/코드 형태의 값이므로 code 태그로 의미 부여 -->
-    <dd><code>1002-***-******12</code></dd>
+            <!-- 계좌 정보(번호, 잔액)는 서로 연관된 설명 데이터이므로 dl(정의 목록)로 구조화 -->
+            <dl>
+                <!-- dt: 설명 대상(용어) -->
+                <dt>계좌번호</dt>
 
-    <dt>잔액</dt>
-    <!-- 금액은 강조되어야 하는 중요한 수치이므로 strong 사용 -->
-    <dd><strong>1,250,000원</strong></dd>
-  </dl>
+                <!-- 마스킹된 숫자/코드 형태의 값이므로 code 태그로 의미 부여 -->
+                <dd><code>1002-***-******12</code></dd>
 
-  <!-- 사용자가 취할 수 있는 행동(동작) 버튼들의 묶음이므로 footer로 구분 -->
-  <footer>
-    <!-- 클릭 시 동작(이체 페이지 이동/모달 등)을 수행하므로 button -->
-    <button type="button">이체</button>
-    <button type="button">상세</button>
-  </footer>
+                <!-- 잔액이라는 항목 이름 -->
+                <dt>잔액</dt>
 
-</article>
+                <!-- 금액은 강조되어야 하는 중요한 수치이므로 strong 사용 -->
+                <dd><strong>1,250,000원</strong></dd>
+            </dl>
+
+            <!-- 사용자가 취할 수 있는 행동(동작) 버튼들의 묶음이므로 footer로 구분 -->
+            <footer>
+                <!-- 클릭 시 이체 기능이 실행될 수 있는 버튼 -->
+                <button type="button">이체</button>
+
+                <!-- 클릭 시 상세 정보를 확인하는 동작을 수행할 수 있는 버튼 -->
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>국민은행</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>1001-***-******23</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>930,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>신한은행</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>1003-***-******34</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>2,480,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>하나은행</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>1005-***-******45</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>845,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>카카오뱅크</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>3333-***-******56</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>1,700,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>토스뱅크</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>1006-***-******67</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>560,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>농협은행</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>011-***-******78</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>2,120,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>기업은행</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>003-***-******89</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>1,320,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>SC제일은행</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>023-***-******90</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>4,100,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>우체국</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>071-***-******11</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>630,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>교보증권</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>120-***-******22</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>2,960,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+
+        <article class="account-card">
+            <header>
+                <h2>KB증권</h2>
+            </header>
+            <dl>
+                <dt>계좌번호</dt>
+                <dd><code>130-***-******33</code></dd>
+
+                <dt>잔액</dt>
+                <dd><strong>1,480,000원</strong></dd>
+            </dl>
+            <footer>
+                <button type="button">이체</button>
+                <button type="button">상세</button>
+            </footer>
+        </article>
+    </div>
 </body>
 </html>

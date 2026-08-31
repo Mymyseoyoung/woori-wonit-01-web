@@ -2,18 +2,44 @@ body {
     margin: 0; /* 브라우저 기본 여백을 제거합니다. */
     padding: 40px; /* 카드 주변에 여백을 만듭니다. */
     background-color: #f4f6f8; /* 흰색 카드가 잘 보이도록 배경색을 지정합니다. */
+     box-sizing: border-box; /* padding이 width에 포함되도록 계산 방식 통일 */
 }
 
+/*
+  부모 컨테이너를 grid로 설정
+  한 줄에 4개의 카드가 들어가도록 repeat(4, ...) 사용
+  gap으로 카드 사이 간격을 주고, max-width로 너무 넓게 퍼지지 않게 조정
+*/
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
 .account-card {
-    display: flex; /* 카드 내부 요소를 Flexbox로 배치합니다. */
-    flex-direction: column; /* 카드 내용을 세로 방향으로 배치합니다. */
-    width: 320px; /* 카드의 너비를 지정합니다. */
-    min-height: 220px; /* 버튼이 카드 하단에 위치할 공간을 확보합니다. */
-    padding: 24px; /* 카드 안쪽에 여백을 줍니다. */
-    box-sizing: border-box; /* padding을 포함해 너비를 계산합니다. */
-    background-color: #ffffff; /* 카드 배경을 흰색으로 지정합니다. */
-    border-radius: 16px; /* 카드 모서리를 둥글게 만듭니다. */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 옅은 그림자를 추가합니다. */
+    /*
+    display: grid;  카드 내부 요소를 Flexbox로 배치합니다. 
+    flex-direction: column; 카드 내용을 세로 방향으로 배치합니다. 
+    width: 320px; 카드의 너비를 지정합니다. 
+    min-height: 220px;  버튼이 카드 하단에 위치할 공간을 확보합니다. 
+    padding: 24px; 카드 안쪽에 여백을 줍니다. 
+    box-sizing: border-box;  padding을 포함해 너비를 계산합니다. 
+    background-color: #ffffff;  카드 배경을 흰색으로 지정합니다. 
+    border-radius: 16px;  카드 모서리를 둥글게 만듭니다. 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 옅은 그림자를 추가합니다. */
+    
+     grid-template-rows: auto auto 1fr;
+    width: 100%;
+    min-height: 220px;
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+   
 }
 
 .account-card h2 {
@@ -61,4 +87,22 @@ body {
     font-size: 15px; /* 버튼 글자 크기를 지정합니다. */
     font-weight: 700; /* 버튼 글자를 굵게 표시합니다. */
     cursor: pointer; /* 마우스를 올리면 클릭 가능한 요소로 표시합니다. */
+}
+
+@media (max-width: 1100px) {
+    .account-grid {
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 820px) {
+    .account-grid {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
 }

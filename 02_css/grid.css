@@ -2,14 +2,21 @@ body {
     margin: 0px;
 }
 .container {
+    
     border: 1px black dashed;
+    /* display에서 grid는 부모 컨테이너에 걸어놓고 자식 컨테이너를 배치하는 방식 */
+    /* grid와 flex의 차이점은 grid는 2차원 배치, flex는 1차원 배치 */
     display: grid;
-    /* grid-template-columns: 20vw 30vw 30vw 10vw 10vw */
+    width: 100vw; /*vw: viewport width, 화면 너비의 100%*/
+    min-height: 100vh; /*vh: viewport height, 화면 높이의 100%*/
+    /*화면을 vw,vh로 나눌때는 총합이 100이므로 100 기준으로 작성 */
+    /*grid-template-columns: 20vw 30vw 30vw 10vw 10vw;
     /* fr : 전체 grid를 구간으로 나누는 상대적 단위 */
     /* grid-template-columns: 2fr 3fr 2fr 6fr; */
     /* grid-template-columns: 30% 70%; */
-    /* grid-template-columns: 200px 7fr 3fr; */
-    /* grid-template-columns: repeat(4, 1fr); */
+     /* grid-template-columns: 200px 7fr 3fr; */
+    grid-template-columns: repeat(4, 1fr); 
+    grid-gap:1vw;
 }
 
 .item {
@@ -17,31 +24,43 @@ body {
 }
 
 #item1 {
-
+grid-row: 5; /*grid-row: grid 아이템이 차지하는 행 위치 결정, 기본값 auto, 숫자, span 가능*/
+grid-column: 1/5;
 }
 
 #item2 {
+    /*header 처럼*/
+    grid-row:1;
+    grid-column: 1/5; /*grid-column: grid 아이템이 차지하는 열 위치 결정, 기본값 auto, 숫자, span 가능*/
 
 }
 
 #item3 {
 
+    /*sidebar 처럼 공간을 차지하도록 */
+    grid-column:1;
+    grid-row:2/5; /*2에서 5까지 차지하도록*/
 }
 
-/* @media screen and (max-width: 922px) {
+/*922 픽셀보다 작아지면 화면이 빨간색으로 변한다는 뜻 ! */
+ @media screen and (max-width: 922px) {
 body {
     background-color: red;
 }
 }
 
+/*→ 브라우저 화면의 가로 너비가 600px 이하가 되면 배경색을 연한 빨간색으로 바꾼다.*/
+/*
 @media screen and (max-width: 600px) {
     body {
         background-color: rgb(185, 96, 96);
     }
     }
+*/
 
+/*→ 화면이 가로로 긴 가로 모드일 때 글자색을 파란색으로 바꾼다.*/
 @media (orientation: landscape) {
     body {
         color: blue;
     }
-} */
+} 
