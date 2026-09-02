@@ -8,13 +8,93 @@
 
 
 
+var array1 = [1, '가', true, null, undefined, [1,2,3]] // 자료형을 강제하지 
+
+array1
+console.log(array1[0]);
+
+console.log(typeof array1);
+
+console.log(array1.length)
+
+
 // 실습: array1이라는 배열을 만들고 apple, banana, carrot 세개의 문자열을 각 index에 넣어보세요.
+
+var array1 = ['apple','banana','carrot'];
+
+// 순서대로 값을 저장하는 자료구조 ( 선형 자료 구조임 )
+// 맨 뒤에 값을 삽입 push(), 삭제 pop()
+
+array1.push("daisy");
+console.log(array1);
+array1.pop();
+console.log(array1)
+
+//array1. 누르면 내장함수 다 나옴 ! 
+
+//맨 앞 ( unshift ,shift )
+// 중간 어딘가에 값을 넣어야 하는 경우도 있을 겁니다. ( splice )
+
+array1.unshift("daisy") // 맨 앞에 삽입 
+console.log(array1)
+array1.shift() // 맨 앞 값을 제거 
+console.log(array1)
+
+
+//중간에 값을 삽입해야 하는 경우도 있을 것입니다. (splice) 
+array1.splice(1,0,"ban");
+console.log(array1);
+
+// 중간 어딘가에 값을 넣어야 하는 경우도 있을 겁니다. (splice)
+// splice(시작index, 삭제할개수, 삽입할 값)
+array1.splice(1, 1, "ban");
+console.log(array1)
+
+// 맨 뒤에 donut을 추가 
+array1.push('donut')
+console.log(array1)
+
+array1.splice(1,1,"bee","betray");
+// ban~ 를 삭제하고 bee, betray라는 단어를 넣어보세요.
+
+console.log(array1)
+
+console.log(array1[0]);
+
+array1.splice(1,2)
+console.log(array1, 'bee','betray')
+//array.splice(start[,deleteCount[,item1[,item2[, ... ]]])
+//            (start는 무조건 있어야 함 [, 생략가능 ])
+
 
 // JS의 sort는 기본적으로 유니코드로 정렬을 합니다. 숫자는 어떻게 정렬해야 할까요?
 
+var array2 = [-565,-3 ,556, 1.3, NaN , null, undefined, true , 0 ]
+array2
+console.log(Number(null))
+console.log(typeof(NaN))
 
+// JS의 기본 SORT는 문자열 순서대로 정렬 
+console.log(array2.sort())
+
+// 숫자로서 오름차순(작은 거~큰 거), 또는 내림차순(큰 거~작은 거) 정렬하는 방법?
+console.log(array2.sort(function (a, b) {
+  return a - b;
+}));
+
+
+//JS
 // -2. Set(집합) - 중복을 걸러내는 유형. new Set([1,3,4,5,6,6])
 
+var set1 = [1,3,4,5,6,6];
+set1 =new Set(set1);//중복되는 값들을 걸러낸 자료형 
+set1
+console.log(typeof set1)
+
+set1.add(7);
+set1
+set1.add(6) // 이미 있는 값은 삽입 불가
+set1
 
 // -3. Object(일반 객체) - key(기본 자료형)로 value를 부르는 종류의 dictionary 타입
 //   - key는 기본자료형만 사용 가능합니다. (object, array, function은 불가)
@@ -24,6 +104,9 @@
 //   - key의 자료형은 string, number, boolean, null, undefined, symbol이 가능합니다.
 //   - value는 모든 자료형이 가능합니다. (기본자료형, 참조자료형 모두 가능)
 
+var dict1 = {"name": "김연지", "age":20, "hobby": ["자전거타기","책읽기"]}
+//key(문패), value(값)
+console.log(dict1['name']);
 
 /* -4. Map: dictionary와 마찬가지로 키-값으로 쌍을 저장합니다. 키로 값을 꺼내 씁니다.
     - 키로 모든 데이터 타입을 받아줍니다. 
