@@ -108,6 +108,33 @@ var dict1 = {"name": "김연지", "age":20, "hobby": ["자전거타기","책읽�
 //key(문패), value(값)
 console.log(dict1['name']);
 
+var dict2 = {"가": "가위","나": "나비","다": "다람쥐","라": "라디오"};
+
+console.log(dict2['가']);
+
+console.log('라' in dict2);
+console.log('나비' in dict2);
+
+
+console.log(Object.keys(dict2)) // key 만 array 형태로 리턴 
+// 
+
+
+// 특정 값을 꺼내는 방법  변수명[key] 로 value에 접근합니다. 
+console.log(dict2[1])
+dict2['가'] = '가랑이'; // key가 이미 있으면 value가 변경됨
+dict2['마'] = '마술사'; // key가 없으면 새로 key-value 쌍이 추가 
+dict2
+delete dict2['가'] // dict2의 '가' 방을 삭제 
+dict2
+
+console.log(delete dict2['가']) // key가 있건 없건 true가 리턴 
+ 
+console.log(Object.values(dict2)) // value 만 array 형태로 리턴 
+console.log(Object.entries(dict2)) // [key, value] 쌍으로 array 형태로 리턴 
+
+// JSON: JavaScript Object Notation: "{'name':'김연지', 'age':'20'}"
+
 /* -4. Map: dictionary와 마찬가지로 키-값으로 쌍을 저장합니다. 키로 값을 꺼내 씁니다.
     - 키로 모든 데이터 타입을 받아줍니다. 
     - 삽입 순서대로 요소를 반복할 수 있습니다.
@@ -116,27 +143,190 @@ console.log(dict1['name']);
     - 뎁스가 복잡하거나, 데이터의 입력 순서, 양이 많을 때 
 */
 
+//key에 value를 매핑한다 ! 
 
+ var map1= new Map();
+ map1['가'] = '가위';// 되기는 되지만 이렇게 직접 접근하지 않고 메서드를 경유하기 위해 Map을 씀 . 
+ map1// 이렇게 하면 순서가 보장되지 않음 ! 
+
+console.log(map1['가']); // dict와 같습니다.
+
+// 되기는 되지만 이렇게 직접 접근하지 않고 메서드를 경유하기 위해 map을 씁니다.
+
+// 함수: 코드의 순서를 정해서 한번에 부를 수 있도록(호출할 수 있도록) 만들어 놓은 덩어리
+         // 입력에 대해 일관된 출력을 보장하는 코드 덩어리
+         // 프로그래밍에서의 함수를 따지고 보면 딱 2개 밖에 없습니다.
+         // getter(보여주는 것)와 setter(해당 값을 변경하는 것) 
+// 나, 나비 / 다, 다람쥐 
+// 나, 나비를 빼보세요. 
+map1.set('나', '나비');
+map1.set('다', '다람쥐');
+map1.set('다', '다리미'); // 이미 있는 key는 value가 바뀝니다.
+map1.set(1, 1010); // 들어오는 순서가 보장됩니다. 
+console.log(map1.get('나')) ;// set으로 삽입한 값만 get으로 부를 수 있습니다.
+map1.delete('나');
+// console.log(Object.entries(map1)); // dict로 우겨넣은 값만 출력됨 
+console.log(map1.get('1')); // undefined: key에 원래 자료형 그대로를 보관하기 때문에 문자열로 변환되지 않습니다. 
+map1;
+
+console.log(map1.keys());
+console.log([...map1.keys()]);
+console.log([...map1.entries()]);
+//반복 가능한 객체 = iterable -> iterator 
 /*
-9. 반복문: for/while
+9. 반복문: for- 반복의 횟수 정해져있을 때
+/while- 반복의 횟수가 정해져있지 않을 때 
 -1. for (초기값; 조건; 증감식) {
   반복되어야 할 실행문
+
+  반복되는 숫자를 의미하는 변수를 i, iter, count 변수명을 주로 사용합니다.
+  반복문 안에 반복문을 작성할 경우 ( 중첩 반복문 )
+
 }
 */
 
+// 1~5까지 출력되도록 변경
+
+for(let i =1; i<6;i++)
+{
+  console.log(i);
+}
+// 5~1까지 출력되도록 변경
+
+
+for(let i =5; i>0;i--)
+{
+  console.log(i);
+}
 // 실습: 5, 3, 1이 출력되도록 변경
 
+
+//좋은 코드 
+// 1. 짧은 코드 ( 수정할 때도 코드 10줄에 에러가 1번씩 난다)
+// 2. 불필요한 동작이 없는 코드 
+// 3. 변수명 / 함수명 등이 직관적이여서 보면 이해할 수 있는 코드 
+// 4. 주석이 잘 달려있어서 이해하기 쉬운 코드 
+for(let i =5; i>0;i-=2)
+{
+  console.log(i);
+}
 // 배열의 길이는 .length 라는 속성으로 확인
 
+var arr = ["김연지", "신짱구", "신짱아"];
+console.log(arr.length);
+console.log(arr.length)
+// ~~야, 안녕? 이라는 글귀를 더해서 3명한테 인사를 해주세요
+
+//값을 바로 꺼냄 
+for(var name of arr)
+{
+  console.log(name+"야 안녕");
+}
+
+for( var i=0;i<arr.length;i++)
+{
+  console.log(arr[i]+"야 안녕");
+}
+
+for ( var key of arr)
+{
+  console.log(key);
+
+}
+
+//방번호를 경유하지 않고 직접 값을 끄집어내는 방무 : for in : True/False 로 더이상 끄집어낼 게 없
+//for of 직접 방에 접근해서 
+// for ( 하나씩 끄집어낼 데이터를 부르는 공갈문자 in 집합자료명 )
+//key = 문패 
+
+
+
+// map은 .size() 라는 메서드로 방의 개수를 구할 수 있습니다. map1에 들어있는 key - value를 출력해보세요.
+
+console.log(map1);
+for(var [key,value] of map1)
+{
+  console.log(key,value);
+}
+
+for(var key of map1.keys())
+{
+  console.log(key);
+}
+
+for ( var key in dict2)
+{
+  console.log()
+}
+
+//구조 분해 
+
+
+dict3 ={}
+console.log(key in dict3);
 
 
 // -2. while문 - 반복할 횟수가 정해지지 않았을 때
 // 1. while문 바깥에 조건을 끝낼 실마리를 만들어주기
-// 2. 무한반복으로 작성하고 break, continue로 강제로 흐름을 제어
+// if / switch / for / while 같은 코드블럭이 안으로 들어가는 동작의 앞뒤에는
+// 엔터를 쳐서 다른 실행문들과 구분해서 보기 좋게 작성합니다. 
+var i = 1; // 초기값
+
+while (i < 6) { // 조건식
+  console.log(i); // 실행문
+  i++; // 증감식
+}
+
+/*
+초기값
+
+while (조건식) {
+  실행문
+  증감식
+}
+*/
+
+// 5~1까지 출력
+
+var i=5;
+while(i>0)
+{
+  console.log(i);
+  i--;
+}
+
+// 1, 3, 5만 출력
+
+var i=1;
+while(i<6)
+{
+  console.log(i);
+  i+=2;
+}
+
+//2. 무한반복으로 작성하고 break,continue로 강제로 흐름을 제어
+var i=1;
+while(true)
+{
+  console.log(i);
+  i++;
+
+  if(i<5)
+  {
+    break;// break 는 특수한 키워드로 break를 만나는 순간 {} 바깥으로 인터프리터가 빠져나감.
+  }
 
 
+}
 
 // arr 와 .length 속성을 이용해서 arr의 모든 원소를 출력하는 while문을 만들어보세요.
+
+let i=0;
+while(i<arr.length)
+{
+  console.log(arr[i]);
+  i++;
+}
 
 
 // forEach (인덱스를 경유하지 않고 바로 값만 출력하는 메서드)
