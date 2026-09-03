@@ -441,3 +441,50 @@ Person.prototype.greet = function () {
 // 은닉성 구현: #을 붙인 private 변수를 사용하여 외부에서 접근하지 못하도록 숨길 수 있습니다.
 
 
+// 객체 지향 방법 
+// OOP(Object Oriented Programming) : 객체지향 프로그래밍
+// start, end 라는 값 ( data )를 받아서 
+// 순서대로 동작( function ) 한 결과 ( 반복해서 값을 1씩 증가시키면서 홀수인지 판별 . 홀수인 경우에만 출력 )
+
+//Student 클래스를 하나 만들어서 greet(), study()만 쓸 수 있습니다.
+//OnlineFighter 클래스를 하나 Fighter을 상속받아서 keyboardFighting()을 출력해주세요 .
+
+
+class Student {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+    greet() {
+    console.log(`안녕하세요! ${this.name}입니다.`);
+  }
+  study()
+  {
+    console.log(`${this.name}이 공부를 합니다.`);
+  }
+
+}
+
+
+  
+  // 고죠사토루 
+class Fighter {
+
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+ 
+  fighting(){
+    console.log(`${this.name}이 싸웁니다.`)
+  }
+}
+  //OnlineFighter 
+
+  class OnlineFighter extends Fighter {
+    keyboardFighting() {
+      console.log(`${this.name}이 온라인으로 싸웁니다.`)
+    }
+
+  }
+
