@@ -321,7 +321,7 @@ while(true)
 
 // arr 와 .length 속성을 이용해서 arr의 모든 원소를 출력하는 while문을 만들어보세요.
 
-let i=0;
+var i=0;
 while(i<arr.length)
 {
   console.log(arr[i]);
@@ -343,6 +343,11 @@ while(i<arr.length)
       return 달고 돌아갈 덩어리 하나    
 }
 
+function hello(이름, 나이)
+{
+}
+
+
 - 2. 익명함수: lambda처럼 쓰고 버리는 걸 기본으로 합니다.
 - var 함수명 = function(파라미터1, 파라미터2, 파리미터3 ...) {
       파라미터를 받아서 실행할 실행문
@@ -351,6 +356,27 @@ while(i<arr.length)
 
 -3. 화살표함수: () => { 동작 }
 */
+
+
+function hello3()
+{
+  return `hello3가 종료될때 달고 들어온 값`
+}
+
+var hi2 = hello3()
+console.log(hi2)
+
+// 1, 3, 5를 출력하는 반복문을   oddNums() 를
+//  호출하면 매번 같은 동작이 실행되도록 함수 안에 넣어주세요
+function oddNums()
+{
+  for(var i=1;i<6;i+=2)
+  {
+    console.log(i);//보여주고 끝나는 함수
+  }
+}
+
+oddNums()
 
 var arr = ['짱구', '짱아', '훈이']
 
