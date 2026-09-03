@@ -488,3 +488,125 @@ class Fighter {
 
   }
 
+
+  //클래스 (빵틀)
+  //      : 클래스 변수 , 
+
+
+
+
+// Student 클래스를 하나 만들어서 greet() , study(과목명) 만 쓸 수 있습니다.
+class Student extends Person2 {
+  // 소속을 같이 받고 싶어요.
+
+   constructor(name, age, school) {
+    // super(변수명, 변수명) 으로 부모 클래스의 생성자를 재사용한다 
+    super(name, age); // 부모클래스에 있는 해당 변수에 넘겨주겠음
+    // this.name = name;
+    // this.age = age;
+    this.school = school;
+   }
+
+   study(과목명='무언가') {
+    // this 로 해당 인스턴스의 메모리 주소를 전달 
+    console.log(`${this.name}이/가 ${과목명}을/를 ${this.school}에서 공부 중입니다.`)
+   }
+}
+
+var 신짱구 = new Student('신짱구', 5, '떡잎유치원');
+신짱구.study('수학'); // 자식클래스에 새로 추가한 인스턴스 메서드
+신짱구.greet(); // 부모클래스에 있는 인스턴스 메서드를 재사용
+
+
+// OnlineFighter 클래스를 하나 Fighter를 상속받아서 keyboardFighting() {'숨어서 싸웁니다'}
+class OnlineFighter extends Fighter {
+
+  fighting() { // 부모클래스에 원래 있는 메서드를 재정의(덮어쓰기)
+    console.log('숨어서 싸웁니다')
+  }
+
+    keyboardFighting() { // 부모클래스에 원래 있는 메서드를 재정의(덮어쓰기)
+    console.log('숨어서 싸웁니다')
+  }
+}
+
+키보드워리어 = new OnlineFighter('김연지', 11)
+키보드워리어.greet(); // 할아버지클래스(Person2)의 기능
+키보드워리어.fighting(); // 부모클래스(Fighter)의 기능을 재정의(Override)
+// 키보드워리어.keyboardFighting(); // 자기자신(OnlineFighter)의 기능
+고죠사토루.fighting();
+
+
+// BankAccount 라는 은행 계좌를 관리하기 위한 class를 만들어보겠습니다.
+// bankName, name, accountNumber, balance 
+// #을 앞에 붙인 변수는 클래스 외부에서 접근이 불가능하도록(private) 숨길 수 있습니다. 
+class BankAccount {
+
+  #balance; 
+
+  // 클래스 변수: static 이라는 키워드를 앞에 적어둔 클래스 변수로 클래스에서 관리하기 위한 속성을 저장합니다. 
+  static bankName = '우리';
+
+  // 클래스 메서드: static 이라는 키워드를 앞에 적어서 클래스에서 필요한 동작을 만듭니다.
+  static hello() {
+    console.log(`어서오세요. 우리은행입니다~`)
+  }
+
+  // 인스턴스 변수: this 라는 키워드로 각 새로 만들어진 고객 인스턴스만의 고유한 값들을 전달  
+  constructor(name, accountNumber, balance) {
+    this.name = name;
+    this.accountNumber = accountNumber;
+    this.#balance = balance;
+  }
+
+  // 인스턴스 메서드: deposit: 입금  - 기존 balance에 새로 들어온 금액을 추가
+  deposit(amount=0) { // setter : 값을 변경만 하는 함수 
+    this.#balance += amount;
+  } 
+
+  // 인스턴스 메서드: withdraw: 출금 - 기존 balace에 새로 빠져나간 금액을 제외 
+  withdraw(amount=0) { // setter: 값을 변경만 하는 함수 
+    this.#balance -= amount;
+  } 
+
+  // private 변수의 조회만 가능하도록 작성한 getter 함수 
+  checkAmount() {
+    console.log(this.#balance);
+  }
+}
+
+var 아이유 = new BankAccount('IU', '123-45', 30000);
+아이유
+아이유.deposit(40000);
+아이유.checkAmount();
+아이유
+아이유.withdraw(4000);
+아이유
+
+
+// 클래스 변수와 클래스 메서드는 클래스를 통해 접근
+BankAccount.hello();
+console.log(BankAccount.bankName);
+
+// 객체지향프로그래밍의 결과를 최대한 살려서 장점처럼 써봅시다.
+// 변수에 직접 접근이 가능하다는 것은 직접 수정도 할 수 있다는 뜻 
+// 변수를 확인하거나 조작할 때 method를 경유하도록 만드는 게 권장됩니다.
+
+// console.log(아이유.#balance); // 없는 게 아니라 숨어있음. 그래서 getter로만 확인하고 setter로만 변경 가능
+
+
+
+// BankAccount를 상속받은 InsAccount를 만들어주세요. 
+// 클래스 변수 를 bankName "동양" 으로 바꿔서 재정의(override)
+// 생성자에 kind 라는 인스턴스 변수를 추가해서  default값은 변액 등 보험의 종류를 넣을 수 있도록 추가해보세요. 
+
+
+class InsAccount extends BankAccount {
+  static bankName = '동양';
+  
+  constructor(name,accountNumber,balance,kind='변액') {
+    //부모 클래스
+    super(name,accountNumber,balance);
+    this.kind = kind;
+  }
+}
